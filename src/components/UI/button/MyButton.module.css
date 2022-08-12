@@ -1,0 +1,18 @@
+.myBtn {
+	padding: 5px 15px;
+	color: teal;
+	font-size: 14px;
+	background: transparent;
+	border: 1px  solid rgba(111, 111, 111, 0.478);
+	cursor: pointer;
+}
+.pageCurrent {
+	border: 2px solid teal;
+	font-size: bold;
+	padding: 5px 15px;
+	margin-bottom: 5px;
+	color: teal;
+	font-size: 14px;
+	background: transparent;
+	cursor: pointer;
+}
