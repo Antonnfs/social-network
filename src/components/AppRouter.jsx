@@ -17,11 +17,11 @@ export default function AppRouter() {
 		// 	<Route path="/*" element={<Navigate to="/error" replace />} />
 		// </Routes>
 		<Routes> 
-			<Route path="/about" element={<About/>}/>
-			<Route path="/" element={<Posts/>}/>
-			<Route path="/error" element={<Error/>}/>
-			<Route path="/:id" element={<PostIdPage/>}/>
-			<Route path="/*" element={<Navigate to="/error" replace />} />
+			<Route path="/social-network/about" element={<About/>}/>
+			<Route path="/social-network" element={<Posts/>}/>
+			<Route path="/social-network/error" element={<Error/>}/>
+			<Route path="/social-network/:id" element={<PostIdPage/>}/>
+			<Route path="/social-network/*" element={<Navigate to="/error" replace />} />
 		</Routes>
 	)
 }

@@ -5,8 +5,8 @@ export default function Navbar() {
 	return (
 		<div className="navbar">
 			<div className='navbar__container'>
-				<Link to='/about' className="navbar__link">About</Link>
-				<Link to='/' className="navbar__link">Posts</Link>
+				<Link to='/social-network/about' className="navbar__link">About</Link>
+				<Link to='/social-network' className="navbar__link">Posts</Link>
 			</div>
 		</div>
 	)

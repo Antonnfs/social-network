@@ -4,8 +4,6 @@ import PostService from '../API/PostService';
 import Loader from '../components/UI/loader/Loader';
 import useFetching from '../hooks/useFetching';
 
-
-
 export default function PostIdPage() {
 	let {id} = useParams();
 	const [post, setPost] = useState({});
@@ -48,7 +46,6 @@ export default function PostIdPage() {
 						</div>
 				}
 			</div>
-
 		</div>
 	)
 }
