@@ -6,8 +6,8 @@ import Error from '../pages/Error';
 import { BrowserRouter, Link, Route, Routes, Navigate,  } from "react-router-dom";
 
 export const routes = [
-	{path:'/about', element: About},
-	{path:'/', element: Posts},
-	{path:'/:id', element: PostIdPage},
-	// {path:"/error", element: Error},
+	{path:'/social-network/about', element: About},
+	{path:'/social-network', element: Posts},
+	{path:'/social-network/:id', element: PostIdPage},
+	{path:"/social-network/error", element: Error},
 ]

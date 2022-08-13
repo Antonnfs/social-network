@@ -1,5 +1,5 @@
-import React, {useState, useEffect } from 'react';
-import {useParams} from 'react-router-dom';
+import React, { useState, useEffect } from 'react';
+import { useParams } from 'react-router-dom';
 import PostService from '../API/PostService';
 import Loader from '../components/UI/loader/Loader';
 import useFetching from '../hooks/useFetching';
@@ -18,9 +18,8 @@ export default function PostIdPage() {
 	})
 	useEffect(() => {
 		fetchPostById(id)
-		// fetchComments(id)
+		fetchComments(id)
 	}, [])
-	console.log(comments);
 
 	return (
 		<div className='center '>
