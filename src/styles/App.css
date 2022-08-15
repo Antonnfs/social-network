@@ -4,12 +4,6 @@
 	box-sizing: border-box;
 }
 
-#root {
-	/* display: flex; */
-	/* justify-content: center; */
-
-
-}
 .App {
 	width: 500px;
 	padding-left: 15px;
@@ -19,6 +13,9 @@
 .title {
 	text-align: center;
 	padding: 15px 0;
+}
+.text-left {
+	text-align: left;
 }
 .center {
 	display: flex;
@@ -65,12 +62,12 @@ transition: all 500ms ease-in;
 .navbar {
 	height: 50px;
 	width: 100vw;
-	background: rgb(131, 131, 131);
+	background: teal;
 	display: flex;
 	align-items: center;
 }
-.navbar__container {
-	width: 500px;
+.container {
+	width: 700px;
 	margin: 0 auto;
 	padding: 0 15px 0 15px;
 }

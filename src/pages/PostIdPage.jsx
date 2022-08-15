@@ -22,13 +22,13 @@ export default function PostIdPage() {
 	}, [])
 
 	return (
-		<div className='center '>
+		<div className='container'>
 			<h1 className='title'>It is a page of post #{id}</h1>
 			{isLoading 
 				? 	<Loader />
 				:  <div>
-						<h2 className='title'>{post.id}. {post.title}</h2>
-						<div className='title'>{post.body}</div>
+						<h2 className='title text-left'>{post.id}. {post.title}</h2>
+						<p className='title text-left'>{post.body}</p>
 					</div>
 			}
 			<div className='center'>
@@ -37,7 +37,7 @@ export default function PostIdPage() {
 					?	<Loader/>
 					:	<div>
 							{comments.map(comment => 
-								<div key={comment.id} style={{marginTop: '15px', width: 700}}>
+								<div key={comment.id} className='container' style={{marginTop: '15px'}}>
 									<h5>{comment.email}</h5>
 									<p>{comment.body}</p>
 								</div>

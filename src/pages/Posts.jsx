@@ -21,7 +21,7 @@ export default function Posts() {
 	const [page, setPage] = useState(1)
 	const [fetchPosts, isPostsLoading, postError] = useFetching(async () => {
 		const response = await PostServise.getAll(limit, page)
-		setPosts(response.data) 
+		setPosts([...posts, ...response.data]) 
 		const totalCount = response.headers['x-total-count'];
 		setTotalPages(getPageCount(totalCount, limit))
 	})
@@ -54,9 +54,9 @@ export default function Posts() {
 			setFilter={setFilter}
 			/>
 			{postError && <h1 style={{color: 'red'}} className="title">{postError}</h1>}
-			{isPostsLoading 
-			? <div style={{display: 'grid', placeItems: 'center', marginTop: '50px'}}><Loader/></div>
-			: <PostList remove={removePost} posts={ sortedAndSearchedPosts } title={'List of posts'}/>
+			<PostList remove={removePost} posts={ sortedAndSearchedPosts } title={'List of posts'}/>
+			{isPostsLoading && 
+			<div style={{display: 'grid', placeItems: 'center', marginTop: '50px'}}><Loader/></div>
 			}
 			<Pagination totalPages={totalPages} page={page} setPage={setPage}/>
 		</div>

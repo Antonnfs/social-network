@@ -15,7 +15,7 @@ function PostItem(props) {
 				</div>
 			</div>
 			<div className="post__btns">
-				<MyButton onClick={() => navigate(`/social-network/${props.post.id}`)}>Open</MyButton>
+				<MyButton onClick={() => navigate(`/${props.post.id}`)}>Open</MyButton>
 				<MyButton onClick={() => props.remove(props.post)}>Delete</MyButton>
 			</div>
 		</div>
