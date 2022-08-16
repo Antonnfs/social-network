@@ -1,4 +1,4 @@
-import React, {useState, useEffect} from "react";
+import React, {useState, useRef, useEffect} from "react";
 import PostForm from "../components/PostForm";
 import PostList from "../components/PostList";
 import PostFilter from "../components/PostFilter";
@@ -11,14 +11,18 @@ import useFetching from "../hooks/useFetching";
 import PostServise from '../API/PostService';
 import "../styles/App.css"
 import { usePosts } from "../hooks/usePosts";
+import useObserver from "../hooks/useObserver";
+import MySelect from "../components/UI/select/MySelect";
 
 export default function Posts() {
 	const [posts, setPosts] = useState([]);
 	const [filter, setFilter] = useState({sort: '', query: ''})
 	const [modal, setModal] = useState(false) 
 	const [totalPages, setTotalPages] = useState(0)
-	const [limit, setLimit] = useState(10);
+	const [limit, setLimit] = useState(5);
 	const [page, setPage] = useState(1)
+	const lastElement = useRef()
+	
 	const [fetchPosts, isPostsLoading, postError] = useFetching(async () => {
 		const response = await PostServise.getAll(limit, page)
 		setPosts([...posts, ...response.data]) 
@@ -26,9 +30,25 @@ export default function Posts() {
 		setTotalPages(getPageCount(totalCount, limit))
 	})
 	const sortedAndSearchedPosts = usePosts(posts, filter.sort, filter.query)
+
+	useObserver(lastElement, page < totalPages, isPostsLoading, () => {setPage(page + 1)})
+
+
+	// useEffect(() => {
+	// 	if (isPostsLoading) return;
+	// 	if (observer.current) observer.current.disconnect()
+	// 	let callback = function(entries, observer) {
+	// 		if (entries[0].isIntersecting && page < totalPages) {
+	// 			setPage(page + 1)
+	// 		} 
+	// 	};
+	// 	observer.current = new IntersectionObserver(callback);
+	// 	observer.current.observe(lastElement.current)
+	// }, [isPostsLoading]);
+
 	useEffect(() => {
-		fetchPosts()
-	}, [page])
+		fetchPosts(limit, page)
+	}, [page, limit])
 
 	function createPost(newPost) {
 		setPosts([...posts, newPost])
@@ -46,15 +66,18 @@ export default function Posts() {
 			</MyButton>
 			<MyButton style={{marginLeft: '15px'}} onClick={fetchPosts}>Get Posts</MyButton>
 			<MyModal visible={modal} setVisible={setModal}>
-				<PostForm create={createPost}/>
+			<PostForm create={createPost}/>
 			</MyModal>
 			<hr style={{margin: '15px 0px'}}/>
 			<PostFilter 
-			filter={filter}
-			setFilter={setFilter}
-			/>
+				limit={limit}
+				setLimit={setLimit}
+				filter={filter}
+				setFilter={setFilter} 
+			/> 
 			{postError && <h1 style={{color: 'red'}} className="title">{postError}</h1>}
 			<PostList remove={removePost} posts={ sortedAndSearchedPosts } title={'List of posts'}/>
+			<div ref={lastElement} style={{height: 1}}></div>
 			{isPostsLoading && 
 			<div style={{display: 'grid', placeItems: 'center', marginTop: '50px'}}><Loader/></div>
 			}
