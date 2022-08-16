@@ -30,20 +30,37 @@ export default function PostIdPage() {
 	return (
 		<div className='container'>
 			<h1 className='title'>It is a page of post #{id}</h1>
-			{isLoading 
-				? 	<div style={{display: 'grid', placeItems: 'center'}}><Loader/></div>
-				:  <div>
-						<h2 className='title text-left'>{post.id}. {post.title}</h2>
-						<p className='title text-left'>{post.body}</p>
-					</div>
+			{isLoading && isPhotosLoading  && isComLoading 
+				? 	<div style={{display: 'grid', placeItems: 'center', height: '50vh'}}><Loader/></div>
+				: 	<>
+						<div>
+							<h2 className='title text-left'>{post.id}. {post.title}</h2>
+							<p className='title text-left'>{post.body}</p>
+						</div>
+						<div style={{width: '100%', height: '100px', display: 'grid', placeItems: 'center', position: 'relative'}}>
+							<img style={{position: 'absolute', width: '100%', height: '100%', top: 0, left: 0, objectFit: 'cover'}} 
+							src={photos.url} alt="photo of post"/>
+						</div>
+						<div className='center'>
+							<h1 style={{marginTop: 50}}>Comments</h1>
+							<div style={{marginBottom: 30}}>
+								{comments.map(comment => 
+									<div key={comment.id} className='container' style={{marginTop: '15px'}}>
+										<h5>{comment.email}</h5>
+										<p>{comment.body}</p>
+									</div>
+								)}
+							</div>
+						</div>
+					</>
 			}
-			{isPhotosLoading 
+			{/* {isPhotosLoading 
 				? 	<div style={{display: 'grid', placeItems: 'center'}}><Loader/></div>
 				:  <div style={{width: '100%', height: '50%', display: 'grid', placeItems: 'center'}}>
 						<img src={photos.url} alt="photo of post"/>
 					</div>
-			}
-			<div className='center'>
+			} */}
+			{/* <div className='center'>
 				<h1 style={{marginTop: 50}}>Comments</h1>
 				{isComLoading
 					?	<Loader/>
@@ -56,7 +73,7 @@ export default function PostIdPage() {
 							)}
 						</div>
 				}
-			</div>
+			</div> */}
 		</div>
 	)
 }
