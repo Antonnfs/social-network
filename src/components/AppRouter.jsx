@@ -20,7 +20,7 @@ export default function AppRouter() {
 				{privateRoutes.map(route => 
 					<Route key={route.path} path={route.path} element={<route.element/>} />
 				)}
-				<Route path="/login" element={<Navigate to="/posts" replace />} />
+				<Route path="/login" element={<Navigate to="/" replace />} />
 			</Routes>
 		:	<Routes> 
 				{publicRoutes.map(route => 

@@ -8,7 +8,7 @@ import Login from '../pages/Login';
 
 export const privateRoutes = [
 	{path:'/about', element: About},
-	{path:'/posts', element: Posts},
+	{path:'/', element: Posts},
 	{path:'/:id', element: PostIdPage},
 	{path:"/error", element: Error},
 ]
